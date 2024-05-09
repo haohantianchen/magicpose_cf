@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PyTorch Distributed",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/lurenjie/anaconda3/envs/animatediff/lib/python3.10/site-packages/torch/distributed/run.py",
+            "args": [
+                "--master_port=10000",
+                "--nproc_per_node=1",
+                "train_tiktok.py",
+                "--model_config=model_lib/ControlNet/models/cldm_v15_my.yaml",
+                "--init_path=./pretrained_weights/control_sd15_ini.ckpt" ,
+                "--output_dir=./tiktok_train_log/magicdance", 
+                "--train_batch_size=8",
+                "--num_workers=1", 
+                "--control_mode=controlnet_important", 
+                "--img_bin_limit=29", 
+                "--use_fp16", 
+                "--control_type=body+hand+face", 
+                "--train_dataset=tiktok_video_arnold", 
+                "--wonoise", 
+                "--finetune_cf", 
+                "--local_image_dir=./tiktok_train_log/image_log/magicdance", 
+                "--local_log_dir=./tiktok_train_log/tb_log/magicdance", 
+                "--pose_pretrain_dir=./pretrained_weights/my_densepose_controlnet.pth" 
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}
